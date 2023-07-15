@@ -12,7 +12,6 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MacroprocessesRequestDTO {
-
     @NotNull(message = "Campo número não pode ser vazio")
     private int numero;
 

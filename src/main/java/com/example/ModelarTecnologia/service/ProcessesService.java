@@ -8,12 +8,10 @@ import com.example.ModelarTecnologia.model.ProcessesModel;
 import java.util.List;
 
 public interface ProcessesService {
-    ProcessesModel saveProcesso(ProcessesRequestDTO processesRequestDTO, MacroprocessesRequestDTO macroprocessesRequestDTO,
-                                ClassificationProcessesRequestDTO classificationProcessesRequestDTO);
+    ProcessesModel saveProcesso(ProcessesRequestDTO processesRequestDTO, String macroprocessesId,
+                                String classificationProcessesId);
 
-    ProcessesModel updateProcesses(String processesId, ProcessesRequestDTO processesRequestDTO,
-                                   MacroprocessesRequestDTO macroprocessesRequestDTO,
-                                   ClassificationProcessesRequestDTO classificationProcessesRequestDTO);
+    ProcessesModel updateProcesses(String processesId, ProcessesRequestDTO processesRequestDTO);
 
     ProcessesModel listProcesses(String processesId);
 

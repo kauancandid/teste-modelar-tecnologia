@@ -1,7 +1,5 @@
 package com.example.ModelarTecnologia.controller;
 
-import com.example.ModelarTecnologia.dto.classification.ClassificationProcessesRequestDTO;
-import com.example.ModelarTecnologia.dto.macroprocesses.MacroprocessesRequestDTO;
 import com.example.ModelarTecnologia.dto.processes.ProcessesRequestDTO;
 import com.example.ModelarTecnologia.dto.processes.ProcessesResponseDTO;
 import com.example.ModelarTecnologia.model.ProcessesModel;
@@ -16,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController()
-@RequestMapping(value = "/processos", produces="application/json")
+@RequestMapping(value = "/processes", produces="application/json")
 public class ProcessesController {
     private ProcessesServiceImpl processoService;
 
@@ -25,23 +23,21 @@ public class ProcessesController {
     }
 
     @ApiOperation("Método para salvar o Processo.")
-    @PostMapping()
+    @PostMapping("save/{macroprocessesId}/{classificationprocessesId}")
     public ResponseEntity<ProcessesResponseDTO> saveProcesso(@RequestBody @Valid ProcessesRequestDTO processesRequestDTO,
-                                                             @RequestBody @Valid MacroprocessesRequestDTO macroprocessesRequestDTO,
-                                                             @RequestBody @Valid ClassificationProcessesRequestDTO classificationProcessesRequestDTO) {
+                                                             @PathVariable String macroprocessesId,
+                                                             @PathVariable String classificationprocessesId) {
 
-        ProcessesModel processosSaved = this.processoService.saveProcesso(processesRequestDTO, macroprocessesRequestDTO, classificationProcessesRequestDTO);
+        ProcessesModel processosSaved = this.processoService.saveProcesso(processesRequestDTO, macroprocessesId, classificationprocessesId);
         return ResponseEntity.status(HttpStatus.CREATED).body(ProcessesResponseDTO.convertToDTO(processosSaved));
     }
 
     @ApiOperation("This method is used to update processesId data.")
     @PatchMapping("update/{processesId}")
     public ResponseEntity<ProcessesResponseDTO> updateProcessesId(@PathVariable String processesId,
-                                                                      @RequestBody @Valid ProcessesRequestDTO processesRequestDTO,
-                                                                      @RequestBody @Valid MacroprocessesRequestDTO macroprocessesRequestDTO,
-                                                                      @RequestBody @Valid ClassificationProcessesRequestDTO classificationProcessesRequestDTO) {
+                                                                      @RequestBody @Valid ProcessesRequestDTO processesRequestDTO) {
 
-        var processe = this.processoService.updateProcesses(processesId, processesRequestDTO, macroprocessesRequestDTO, classificationProcessesRequestDTO);
+        var processe = this.processoService.updateProcesses(processesId, processesRequestDTO);
         return ResponseEntity.status(HttpStatus.OK).body(ProcessesResponseDTO.convertToDTO(processe));
     }
 

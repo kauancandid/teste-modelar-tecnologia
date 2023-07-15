@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController()
-@RequestMapping(value = "/macroprocessos", produces="application/json")
+@RequestMapping(value = "/macroprocesses", produces="application/json")
 public class MacroprocessesController {
 
     private MacroprocessesServiceImpl macroprocessoService;

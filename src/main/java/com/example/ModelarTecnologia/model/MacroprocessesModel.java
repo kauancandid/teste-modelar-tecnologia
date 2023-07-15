@@ -42,7 +42,7 @@ public class MacroprocessesModel {
     private int ano;
 
     @OneToMany(cascade = CascadeType.REMOVE)
-    @JoinColumn(nullable = false, name = "processo_id")
+    @JoinColumn(name = "processo_id")
     private List<ProcessesModel> processoModel;
 
 

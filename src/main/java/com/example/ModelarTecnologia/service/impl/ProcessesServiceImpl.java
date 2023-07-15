@@ -18,7 +18,6 @@ public class ProcessesServiceImpl implements ProcessesService {
 
     private final ProcessesRepository processesRepository;
     private final MacroprocessesServiceImpl macroprocessoService;
-
     private final ClassificationProcessesServiceImpl classificacaoProcessoService;
 
 
@@ -31,8 +30,8 @@ public class ProcessesServiceImpl implements ProcessesService {
 
     @Override
     @Transactional
-    public ProcessesModel saveProcesso(ProcessesRequestDTO processesRequestDTO, MacroprocessesRequestDTO macroprocessesRequestDTO,
-                                       ClassificationProcessesRequestDTO classificationProcessesRequestDTO) {
+    public ProcessesModel saveProcesso(ProcessesRequestDTO processesRequestDTO, String macroprocessesId,
+                                       String classificationProcessesId) {
 
         ProcessesModel processesModel = new ProcessesModel();
 
@@ -40,10 +39,10 @@ public class ProcessesServiceImpl implements ProcessesService {
         processesModel.setNome(processesRequestDTO.getNome());
         processesModel.setDescricao(processesRequestDTO.getDescricao());
 
-        var macroProce = macroprocessoService.saveMacrorocesso(macroprocessesRequestDTO);
+        var macroProce = macroprocessoService.listMacroprocesses(macroprocessesId);
         processesModel.setMacroprocessesModel(macroProce);
 
-        var classificacao = classificacaoProcessoService.saveClassificacao(classificationProcessesRequestDTO);
+        var classificacao = classificacaoProcessoService.listClassificationProcesses(classificationProcessesId);
         processesModel.setClassificationProcessesModel(classificacao);
 
         this.processesRepository.save(processesModel);
@@ -53,8 +52,7 @@ public class ProcessesServiceImpl implements ProcessesService {
     }
 
     @Override
-    public ProcessesModel updateProcesses(String processesId, ProcessesRequestDTO processesRequestDTO, MacroprocessesRequestDTO macroprocessesRequestDTO,
-                                          ClassificationProcessesRequestDTO classificationProcessesRequestDTO) {
+    public ProcessesModel updateProcesses(String processesId, ProcessesRequestDTO processesRequestDTO) {
         Optional<ProcessesModel> classificationProcessesModel = this.processesRepository.findById(UUID.fromString(processesId));
         if(classificationProcessesModel.isEmpty()) {
             throw new RuntimeException("Processo não encontrado!");
@@ -64,12 +62,6 @@ public class ProcessesServiceImpl implements ProcessesService {
         processesModel.setNumero(processesRequestDTO.getNumero());
         processesModel.setNome(processesRequestDTO.getNome());
         processesModel.setDescricao(processesRequestDTO.getDescricao());
-
-        var macroProce = macroprocessoService.saveMacrorocesso(macroprocessesRequestDTO);
-        processesModel.setMacroprocessesModel(macroProce);
-
-        var classificacao = classificacaoProcessoService.saveClassificacao(classificationProcessesRequestDTO);
-        processesModel.setClassificationProcessesModel(classificacao);
 
         return this.processesRepository.save(processesModel);
     }

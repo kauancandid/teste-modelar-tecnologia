@@ -21,7 +21,4 @@ public class ProcessesRequestDTO {
     @NotBlank(message = "Campo descrição não pode ser vazio")
     private String descricao;
 
-    private String codMacro;
-
-    private String codClassificacao;
 }

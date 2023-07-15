@@ -18,6 +18,6 @@ public class ClassificationProcessesModel {
     private String descricao;
 
     @OneToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(nullable = false, name = "processo_id")
+    @JoinColumn(name = "processo_id")
     private ProcessesModel client;
 }

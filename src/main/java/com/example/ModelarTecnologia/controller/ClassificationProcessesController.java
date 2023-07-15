@@ -31,7 +31,7 @@ public class ClassificationProcessesController {
     }
 
     @ApiOperation("This method is used to update classificationId data.")
-    @PatchMapping("update/{processesId}")
+    @PatchMapping("update/{classificationId}")
     public ResponseEntity<ClassificationProcessesResponseDTO> updateClassificationId(@PathVariable String classificationId,
                                                                       @RequestBody @Valid ClassificationProcessesRequestDTO classificationProcessesRequestDTO) {
 
