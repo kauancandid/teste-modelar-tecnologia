@@ -42,7 +42,7 @@ public class ClassificationProcessesServiceImpl implements ClassificationProcess
     }
 
     @Override
-    public ClassificationProcessesModel listClassificationProcesses(String classificationId) {
+    public ClassificationProcessesModel getClassificationProcessesById(String classificationId) {
 
         Optional<ClassificationProcessesModel> classicationModel = this.classificationProcessesRepository.findById(UUID.fromString(classificationId));
         if (classicationModel.isEmpty()) {

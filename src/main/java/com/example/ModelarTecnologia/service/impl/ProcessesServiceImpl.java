@@ -1,7 +1,5 @@
 package com.example.ModelarTecnologia.service.impl;
 
-import com.example.ModelarTecnologia.dto.classification.ClassificationProcessesRequestDTO;
-import com.example.ModelarTecnologia.dto.macroprocesses.MacroprocessesRequestDTO;
 import com.example.ModelarTecnologia.dto.processes.ProcessesRequestDTO;
 import com.example.ModelarTecnologia.model.ProcessesModel;
 import com.example.ModelarTecnologia.repository.ProcessesRepository;
@@ -42,7 +40,7 @@ public class ProcessesServiceImpl implements ProcessesService {
         var macroProce = macroprocessoService.listMacroprocesses(macroprocessesId);
         processesModel.setMacroprocessesModel(macroProce);
 
-        var classificacao = classificacaoProcessoService.listClassificationProcesses(classificationProcessesId);
+        var classificacao = classificacaoProcessoService.getClassificationProcessesById(classificationProcessesId);
         processesModel.setClassificationProcessesModel(classificacao);
 
         this.processesRepository.save(processesModel);

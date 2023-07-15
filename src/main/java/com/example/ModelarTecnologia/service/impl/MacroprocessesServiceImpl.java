@@ -1,10 +1,10 @@
 package com.example.ModelarTecnologia.service.impl;
 
-import com.example.ModelarTecnologia.dto.classification.ClassificationProcessesRequestDTO;
 import com.example.ModelarTecnologia.dto.macroprocesses.MacroprocessesRequestDTO;
 import com.example.ModelarTecnologia.model.ClassificationProcessesModel;
 import com.example.ModelarTecnologia.model.MacroprocessesModel;
 import com.example.ModelarTecnologia.repository.MacroprocessesRepository;
+import com.example.ModelarTecnologia.service.ClassificationProcessesService;
 import com.example.ModelarTecnologia.service.MacroprocessesService;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +17,12 @@ public class MacroprocessesServiceImpl implements MacroprocessesService {
 
     private MacroprocessesRepository macroprocessesRepository;
 
+    private final ClassificationProcessesService classificationProcessesService;
 
-    public MacroprocessesServiceImpl(MacroprocessesRepository macroprocessesRepository) {
+    public MacroprocessesServiceImpl(MacroprocessesRepository macroprocessesRepository,
+                                     final ClassificationProcessesService classificationProcessesService) {
         this.macroprocessesRepository = macroprocessesRepository;
+        this.classificationProcessesService = classificationProcessesService;
     }
 
     @Override
@@ -30,7 +33,10 @@ public class MacroprocessesServiceImpl implements MacroprocessesService {
         macroprocessesModel.setNumero(macroprocessesRequestDTO.getNumero());
         macroprocessesModel.setAno(macroprocessesRequestDTO.getAno());
         macroprocessesModel.setNome(macroprocessesRequestDTO.getNome());
-        macroprocessesModel.setClassificacao(macroprocessesRequestDTO.getClassificacao());
+
+        var classificationProcessesModel = classificationProcessesService.getClassificationProcessesById(macroprocessesRequestDTO.getClassificacao());
+        macroprocessesModel.setClassificationProcessesModel(classificationProcessesModel);
+
         macroprocessesModel.setDescricao(macroprocessesRequestDTO.getDescricao());
         macroprocessesModel.setStatus(macroprocessesRequestDTO.getStatus());
         macroprocessesModel.setDataInicio(macroprocessesRequestDTO.getDataInicio());
@@ -52,7 +58,10 @@ public class MacroprocessesServiceImpl implements MacroprocessesService {
         macroprocessesModel1.setNumero(macroprocessesRequestDTO.getNumero());
         macroprocessesModel1.setAno(macroprocessesRequestDTO.getAno());
         macroprocessesModel1.setNome(macroprocessesRequestDTO.getNome());
-        macroprocessesModel1.setClassificacao(macroprocessesRequestDTO.getClassificacao());
+
+        var classificationProcessesModel = classificationProcessesService.getClassificationProcessesById(macroprocessesRequestDTO.getClassificacao());
+        macroprocessesModel1.setClassificationProcessesModel(classificationProcessesModel);
+
         macroprocessesModel1.setDescricao(macroprocessesRequestDTO.getDescricao());
         macroprocessesModel1.setStatus(macroprocessesRequestDTO.getStatus());
         macroprocessesModel1.setDataInicio(macroprocessesRequestDTO.getDataInicio());
