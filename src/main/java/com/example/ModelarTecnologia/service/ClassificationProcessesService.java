@@ -8,7 +8,7 @@ import java.util.List;
 public interface ClassificationProcessesService {
     ClassificationProcessesModel saveClassificacao(ClassificationProcessesRequestDTO classificationProcessesRequestDTO);
     ClassificationProcessesModel updateClassificationProcesses(String classificationId, ClassificationProcessesRequestDTO classificationProcessesRequestDTO);
-    ClassificationProcessesModel listClassificationProcesses(String classificationId);
+    ClassificationProcessesModel getClassificationProcessesById(String classificationId);
     List<ClassificationProcessesModel> listAllClassificationProcesses();
     void deleteClassificationProcesses(String classificationId);
 }

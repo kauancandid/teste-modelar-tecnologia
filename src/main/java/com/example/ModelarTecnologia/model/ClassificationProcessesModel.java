@@ -16,8 +16,4 @@ public class ClassificationProcessesModel {
 
     @Column(name = "descricao", nullable = false)
     private String descricao;
-
-    @OneToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "processo_id")
-    private ProcessesModel client;
 }

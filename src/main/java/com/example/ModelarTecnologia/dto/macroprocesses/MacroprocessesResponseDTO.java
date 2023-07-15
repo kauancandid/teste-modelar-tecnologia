@@ -20,7 +20,7 @@ public class MacroprocessesResponseDTO {
     private Date dataInicio;
     private Date dataTermino;
     private int status;
-    private int classificacao;
+    private String classificacao;
     private int ano;
 
     public static MacroprocessesResponseDTO convertToDTO(MacroprocessesModel macro) {
@@ -33,7 +33,7 @@ public class MacroprocessesResponseDTO {
         macroResponseDTO.setDataInicio(macro.getDataInicio());
         macroResponseDTO.setDataTermino(macro.getDataTermino());
         macroResponseDTO.setStatus(macro.getStatus());
-        macroResponseDTO.setClassificacao(macro.getClassificacao());
+        macroResponseDTO.setClassificacao(macro.getClassificationProcessesModel().getId().toString());
         macroResponseDTO.setAno(macro.getAno());
 
         return macroResponseDTO;

@@ -33,7 +33,7 @@ public class ClassificationProcessesController {
     @ApiOperation("This method is used to update classificationId data.")
     @PatchMapping("update/{classificationId}")
     public ResponseEntity<ClassificationProcessesResponseDTO> updateClassificationId(@PathVariable String classificationId,
-                                                                      @RequestBody @Valid ClassificationProcessesRequestDTO classificationProcessesRequestDTO) {
+                                                                                     @RequestBody @Valid ClassificationProcessesRequestDTO classificationProcessesRequestDTO) {
 
         var classification = this.classificacaoProcessosModel.updateClassificationProcesses(classificationId, classificationProcessesRequestDTO);
         return ResponseEntity.status(HttpStatus.OK).body(ClassificationProcessesResponseDTO.convertToDTO(classification));
@@ -55,7 +55,7 @@ public class ClassificationProcessesController {
     @ApiOperation("This method is used to list classification data.")
     @GetMapping("get/{classificationId}")
     public ResponseEntity<ClassificationProcessesResponseDTO> listProcessesId(@PathVariable String classificationId) {
-        var classificationProcessesModel = this.classificacaoProcessosModel.listClassificationProcesses(classificationId);
+        var classificationProcessesModel = this.classificacaoProcessosModel.getClassificationProcessesById(classificationId);
 
         return ResponseEntity.status(HttpStatus.OK).body(ClassificationProcessesResponseDTO.convertToDTO(classificationProcessesModel));
     }

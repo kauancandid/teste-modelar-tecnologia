@@ -35,8 +35,8 @@ public class MacroprocessesModel {
     @Column(name = "status", nullable = false)
     private int status;
 
-    @Column(name = "classificacao", nullable = false)
-    private int classificacao;
+    @OneToOne(cascade = CascadeType.REMOVE)
+    private ClassificationProcessesModel classificationProcessesModel;
 
     @Column(name = "ano", nullable = false)
     private int ano;

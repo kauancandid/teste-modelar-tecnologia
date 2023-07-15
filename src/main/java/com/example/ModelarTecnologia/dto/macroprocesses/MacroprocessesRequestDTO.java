@@ -29,7 +29,7 @@ public class MacroprocessesRequestDTO {
     private int status;
 
     @NotNull(message = "Campo classificação não pode ser vazio")
-    private int classificacao;
+    private String classificacao;
 
     @NotNull(message = "Campo ano não pode ser vazio")
     private int ano;
