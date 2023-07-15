@@ -23,13 +23,7 @@ public class ProcessesModel {
     @Column(name = "descricao", nullable = false)
     private String descricao;
 
-//    @Column(name = "inicio", nullable = false)
-//    private String codMacro;
-//
-//    @Column(name = "termino", nullable = false)
-//    private String codClassificacao;
-
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     private MacroprocessesModel macroprocessesModel;
 
     @OneToOne(cascade = CascadeType.REMOVE)

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -40,9 +41,9 @@ public class MacroprocessesModel {
     @Column(name = "ano", nullable = false)
     private int ano;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @OneToMany(cascade = CascadeType.REMOVE)
     @JoinColumn(nullable = false, name = "processo_id")
-    private ProcessesModel processoModel;
+    private List<ProcessesModel> processoModel;
 
 
 }
